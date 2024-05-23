@@ -3,13 +3,39 @@
 <head>
     <meta charset="UTF-8" />
     <title>Spa Menu</title>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    -->
+    <link th:href="@{/styles.css}" rel="stylesheet" />
 </head>
 <body>
 <h1>My Super Fancy Spa</h1>
 <div id = "clientProfile">
+    <h2>My Profile</h2>
+    <p th:text="${name}"></p>
+    <p th:text="${skintype}"></p>
+    <p th:text="${manipedi}"></p>
 </div>
 <div id = "servicesMenu">
+    <table>
+        <th:block th:each="service : ${appropriateFacials}">
+            <tr>
+                <td th:text="${service}"></td>
+            </tr>
+        </th:block>
+    </table>
+    <div>
+        <th:block th:if = "${manipedi.equals('manicure')}">
+            <h3>Manicure</h3>
+            <p th:replace = "fragments :: manicureDescription"></p>
+        </th:block>
+        <th:block th:if = "${manipedi.equals('pedicure')}">
+            <h3>Pedicure</h3>
+            <p th:replace = "fragments :: pedicureDescription"></p>
+        </th:block>
+    </div>
 </div>
 </body>
 </html>
